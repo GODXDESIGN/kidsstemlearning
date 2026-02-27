@@ -13,10 +13,7 @@
 </head>
 
 <body>
-    <!-- Persistent Background Music Toggle (hidden initially) -->
-    <button id="bgm-toggle" class="icon-btn floating-btn top-left" aria-label="Toggle Music" style="display: none;">
-        🔊
-    </button>
+    <!-- Removed BGM Toggle -->
 
     <!-- Home Button (hidden on home screen) -->
     <button id="home-btn" class="icon-btn floating-btn top-right hidden" aria-label="Go Home">
@@ -35,7 +32,7 @@
             <div class="activity-grid">
                 <button class="activity-card" data-target="screen-stories" aria-label="Bedtime Stories">
                     <div class="card-icon">📚</div>
-                    <h2>Stories</h2>
+                    <h2>Bedtime Stories</h2>
                 </button>
                 <button class="activity-card" data-target="screen-abc" aria-label="Learn Letters and Words">
                     <div class="card-icon">🔤</div>
@@ -56,6 +53,10 @@
                 <button class="activity-card" data-target="screen-videos" aria-label="Watch Videos">
                     <div class="card-icon">📺</div>
                     <h2>Videos</h2>
+                </button>
+                <button class="activity-card" data-target="screen-melodies" aria-label="Play Melodies">
+                    <div class="card-icon">🎵</div>
+                    <h2>Melodies</h2>
                 </button>
             </div>
 
@@ -175,12 +176,22 @@
             </div>
         </section>
 
+        <!-- Screen: Melodies -->
+        <section id="screen-melodies" class="screen activity-screen">
+            <h2 class="activity-title">Sing a Song!</h2>
+            <div class="video-grid" id="melodies-grid">
+                <!-- Songs injected via JS reusing video grid styles -->
+            </div>
+        </section>
+
     </div>
 
     <!-- Audio Elements -->
     <audio id="sfx-success" src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3"
         preload="auto"></audio>
     <audio id="sfx-bounce" src="https://assets.mixkit.co/active_storage/sfx/2443/2443-preview.mp3"
+        preload="auto"></audio>
+    <audio id="sfx-pop" src="https://assets.mixkit.co/active_storage/sfx/2658/2658-preview.mp3"
         preload="auto"></audio>
 
     <!-- Scripts -->
@@ -192,6 +203,7 @@
     <script src="js/modules/story.js"></script>
     <script src="js/modules/rhymes.js"></script>
     <script src="js/modules/videos.js"></script>
+    <script src="js/modules/melodies.js"></script>
     <script src="js/main.js"></script>
 </body>
 

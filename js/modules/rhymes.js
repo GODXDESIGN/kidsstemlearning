@@ -93,6 +93,14 @@ const RhymesModule = {
                 if (balloon.classList.contains('popped')) return;
 
                 balloon.classList.add('popped');
+
+                // Vibrate for tactile feedback (if supported by device)
+                if (navigator.vibrate) {
+                    navigator.vibrate(200);
+                }
+
+                // Play sounds
+                window.AudioManager.playPop();
                 this.playNote(freq);
                 animation.pause();
 

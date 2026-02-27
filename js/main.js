@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.StoryModule) window.StoryModule.init();
     if (window.RhymesModule) window.RhymesModule.init();
     if (window.VideosModule) window.VideosModule.init();
+    if (window.MelodiesModule) window.MelodiesModule.init();
 
     // 2. DOM Elements
     const screens = document.querySelectorAll('.screen');
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.StoryModule) window.StoryModule.deactivate();
         if (window.RhymesModule) window.RhymesModule.deactivate();
         if (window.VideosModule) window.VideosModule.deactivate();
+        if (window.MelodiesModule) window.MelodiesModule.deactivate();
 
         // Switch active CSS classes
         screens.forEach(s => s.classList.remove('active'));
@@ -56,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (screenId === 'screen-stories') window.StoryModule.activate();
         if (screenId === 'screen-rhymes') window.RhymesModule.activate();
         if (screenId === 'screen-videos') window.VideosModule.activate();
+        if (screenId === 'screen-melodies') window.MelodiesModule.activate();
         if (screenId === 'screen-parents') renderParentsDashboard();
 
         window.AudioManager.playBounce();
@@ -80,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (target === 'screen-draw') window.AudioManager.speak('Draw');
             if (target === 'screen-rhymes') window.AudioManager.speak('Rhymes and Games');
             if (target === 'screen-videos') window.AudioManager.speak('Videos');
+            if (target === 'screen-melodies') window.AudioManager.speak('Melodies');
 
             setTimeout(() => navigateTo(target), 300); // sync with CSS animation tap
         });

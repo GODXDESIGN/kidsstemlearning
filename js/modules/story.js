@@ -4,12 +4,24 @@
 const StoryModule = {
     stories: [
         {
-            title: "The Little Fox",
+            title: "Super Bear's Friendship",
             pages: [
-                { text: "The little fox went into the forest...", image: "🦊" },
-                { text: "He saw a big green tree.", image: "🌳" },
-                { text: "Under the tree was a shiny red apple.", image: "🍎" },
-                { text: "He ate the apple and went to sleep. The end.", image: "😴" }
+                { text: "Once upon a time, deep in the forest...", image: "🌲" },
+                { text: "Lived Super Bear, a hero with a big heart.", image: "🐻" },
+                { text: "One day, he heard a tiny cry for help.", image: "👂" },
+                { text: "It was a little bunny stuck in a bush.", image: "🐰" },
+                { text: "Super Bear gently lifted the bunny out.", image: "❤️" },
+                { text: "They became best friends and learned that being kind makes you a true hero. Good night!", image: "😴" }
+            ]
+        },
+        {
+            title: "The Brave Lion and the Clever Mouse",
+            pages: [
+                { text: "The sun was setting on the warm savanna.", image: "🌅" },
+                { text: "A brave lion was resting under a tree.", image: "🦁" },
+                { text: "A tiny mouse accidentally woke him up.", image: "🐭" },
+                { text: "The lion let the mouse go, and the mouse promised to help him one day.", image: "🤝" },
+                { text: "Later, the mouse freed the lion from a hunter's net. They learned we all need each other. Good night!", image: "😴" }
             ]
         }
     ],
@@ -80,6 +92,7 @@ const StoryModule = {
 
         window.AudioManager.speak(text, {
             rate: 0.8, // nice and slow for bedtime
+            pitch: 0.8, // slightly deeper, calmer voice for bedtime
             onEnd: () => {
                 this.btnRead.disabled = false;
                 this.btnRead.style.opacity = '1';

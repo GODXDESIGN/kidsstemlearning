@@ -7,10 +7,12 @@ const AudioManager = {
     voicesReady: false,
     sfxSuccess: null,
     sfxBounce: null,
+    sfxPop: null,
 
     init() {
         this.sfxSuccess = document.getElementById('sfx-success');
         this.sfxBounce = document.getElementById('sfx-bounce');
+        this.sfxPop = document.getElementById('sfx-pop');
 
         // Ensure voices load (Async in Chrome)
         if (this.synth.onvoiceschanged !== undefined) {
@@ -37,6 +39,13 @@ const AudioManager = {
         this.sfxSuccess.currentTime = 0;
         this.sfxSuccess.volume = 0.5;
         this.sfxSuccess.play().catch(e => console.log('Audio overlap ignored'));
+    },
+
+    playPop() {
+        if (!this.sfxPop) return;
+        this.sfxPop.currentTime = 0;
+        this.sfxPop.volume = 0.6;
+        this.sfxPop.play().catch(e => console.log('Audio overlap ignored'));
     },
 
     // Speaks the word or sentence, attempting to find a friendly native voice

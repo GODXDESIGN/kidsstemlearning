@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kids Fun Learning</title>
+    <meta name="description" content="A fun, adaptive, and intellectual educational app for toddlers.">
+    <!-- Using a highly readable, friendly font for toddlers -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Persistent Background Music Toggle (hidden initially) -->
+    <button id="bgm-toggle" class="icon-btn floating-btn top-left" aria-label="Toggle Music" style="display: none;">
+        🔊
+    </button>
+
+    <!-- Home Button (hidden on home screen) -->
+    <button id="home-btn" class="icon-btn floating-btn top-right hidden" aria-label="Go Home">
+        🏠
+    </button>
+
+    <div class="app-container">
+
+        <!-- Screen: Main Hub -->
+        <main id="screen-home" class="screen active">
+            <header>
+                <h1>Joyful Learning!</h1>
+                <p>Pick a fun activity!</p>
+            </header>
+
+            <div class="activity-grid">
+                <button class="activity-card" data-target="screen-stories" aria-label="Bedtime Stories">
+                    <div class="card-icon">📚</div>
+                    <h2>Stories</h2>
+                </button>
+                <button class="activity-card" data-target="screen-abc" aria-label="Learn Letters and Words">
+                    <div class="card-icon">🔤</div>
+                    <h2>ABC & Words</h2>
+                </button>
+                <button class="activity-card" data-target="screen-puzzles" aria-label="Fun Puzzles">
+                    <div class="card-icon">🧩</div>
+                    <h2>Puzzles</h2>
+                </button>
+                <button class="activity-card" data-target="screen-draw" aria-label="Draw and Animate">
+                    <div class="card-icon">🎨</div>
+                    <h2>Draw</h2>
+                </button>
+                <button class="activity-card" data-target="screen-rhymes" aria-label="Rhymes and Games">
+                    <div class="card-icon">🎈</div>
+                    <h2>Rhymes</h2>
+                </button>
+                <button class="activity-card" data-target="screen-videos" aria-label="Watch Videos">
+                    <div class="card-icon">📺</div>
+                    <h2>Videos</h2>
+                </button>
+            </div>
+
+            <button id="parent-gate-btn" class="text-btn bottom-center" aria-label="Parents Area">
+                Parents Area
+            </button>
+        </main>
+
+        <!-- Screen: Parental Gate (Math Challenge) -->
+        <section id="screen-gate" class="screen">
+            <div class="gate-container card">
+                <h2>For Parents Only</h2>
+                <p>Please solve to enter:</p>
+                <h3 id="math-problem">5 + 7 = ?</h3>
+                <div class="numpad">
+                    <button class="num-btn" data-val="10">10</button>
+                    <button class="num-btn" data-val="11">11</button>
+                    <button class="num-btn" data-val="12">12</button>
+                    <button class="num-btn" data-val="13">13</button>
+                </div>
+                <button class="text-btn danger-btn cancel-gate">Go Back</button>
+            </div>
+        </section>
+
+        <!-- Screen: Parents Dashboard -->
+        <section id="screen-parents" class="screen">
+            <div class="dashboard-container card">
+                <h2>Parents Dashboard</h2>
+                <div class="stats-panel">
+                    <h3>Learning Progress</h3>
+                    <ul id="progress-list">
+                        <li>Loading stats...</li>
+                    </ul>
+                </div>
+                <!-- Mock Monetization -->
+                <div class="premium-panel">
+                    <h3>Unlock More Fun!</h3>
+                    <p>Get 100+ new words, 50 new stories, and advanced puzzles.</p>
+                    <button class="cta-btn primary-btn">Subscribe for $4.99/mo</button>
+                </div>
+                <button class="text-btn danger-btn go-home">Exit Dashboard</button>
+            </div>
+        </section>
+
+        <!-- Screen: Stories -->
+        <section id="screen-stories" class="screen activity-screen">
+            <h2 class="activity-title">Bedtime Stories</h2>
+            <div class="story-container card">
+                <div class="story-image" id="story-image">🦊</div>
+                <p class="story-text" id="story-text">The little fox went into the forest...</p>
+                <div class="story-controls">
+                    <button id="story-prev" class="icon-btn huge-btn">⬅️</button>
+                    <button id="story-read" class="icon-btn huge-btn primary-btn">▶️ Read</button>
+                    <button id="story-next" class="icon-btn huge-btn">➡️</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen: ABC & Words (Adaptive) -->
+        <section id="screen-abc" class="screen activity-screen">
+            <h2 class="activity-title" id="abc-title">Find the letter...</h2>
+            <div class="flashcard-grid" id="abc-grid">
+                <!-- Buttons injected via JS based on progressTracker -->
+            </div>
+            <!-- Huge celebration overlay -->
+            <div id="abc-celebration" class="celebration hidden">⭐ YAY! ⭐</div>
+        </section>
+
+        <!-- Screen: Puzzles (Drag and Drop / Touch) -->
+        <section id="screen-puzzles" class="screen activity-screen">
+            <h2 class="activity-title">Match the Shapes!</h2>
+            <div class="puzzle-area card">
+                <div class="puzzle-targets" id="puzzle-targets">
+                    <!-- Drop zones injected via JS -->
+                </div>
+                <div class="puzzle-pieces" id="puzzle-pieces">
+                    <!-- Draggable pieces injected via JS -->
+                </div>
+            </div>
+            <div id="puzzle-celebration" class="celebration hidden">🎉 Good Job! 🎉</div>
+        </section>
+
+        <!-- Screen: Draw & Animate -->
+        <section id="screen-draw" class="screen activity-screen">
+            <h2 class="activity-title">Draw a Picture!</h2>
+            <div class="canvas-container">
+                <canvas id="drawing-canvas"></canvas>
+                <div class="color-palette">
+                    <button class="color-btn" style="background: #ef4444" data-color="#ef4444"></button>
+                    <button class="color-btn" style="background: #f59e0b" data-color="#f59e0b"></button>
+                    <button class="color-btn" style="background: #10b981" data-color="#10b981"></button>
+                    <button class="color-btn" style="background: #3b82f6" data-color="#3b82f6"></button>
+                    <button class="color-btn" style="background: #8b5cf6" data-color="#8b5cf6"></button>
+                    <button class="color-btn" style="background: #111827" data-color="#111827"></button>
+                </div>
+            </div>
+            <div class="draw-controls">
+                <button id="btn-clear" class="text-btn danger-btn">Clear</button>
+                <button id="btn-animate" class="text-btn primary-btn">✨ Animate! ✨</button>
+            </div>
+        </section>
+
+        <!-- Screen: Rhymes & Games -->
+        <section id="screen-rhymes" class="screen activity-screen">
+            <h2 class="activity-title">Pop the Balloons!</h2>
+            <div class="rhymes-area" id="rhymes-area">
+                <!-- Balloons injected via JS -->
+            </div>
+            <div id="rhyme-celebration" class="celebration hidden">🎵 Awesome! 🎵</div>
+        </section>
+
+        <!-- Screen: Educational Videos -->
+        <section id="screen-videos" class="screen activity-screen">
+            <h2 class="activity-title">Watch & Learn!</h2>
+            <div class="video-grid" id="video-grid">
+                <!-- Videos injected via JS -->
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="sfx-success" src="https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3"
+        preload="auto"></audio>
+    <audio id="sfx-bounce" src="https://assets.mixkit.co/active_storage/sfx/2443/2443-preview.mp3"
+        preload="auto"></audio>
+
+    <!-- Scripts -->
+    <script src="js/progressTracker.js"></script>
+    <script src="js/modules/audio.js"></script>
+    <script src="js/modules/draw.js"></script>
+    <script src="js/modules/learning.js"></script>
+    <script src="js/modules/puzzles.js"></script>
+    <script src="js/modules/story.js"></script>
+    <script src="js/modules/rhymes.js"></script>
+    <script src="js/modules/videos.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
